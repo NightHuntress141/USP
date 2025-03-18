@@ -95,6 +95,7 @@ void imprimirGrafo(vertice *g) {
 int GrauSaida(vertice *g, int i){
     int soma = 0;
     NO* p = g[i].inicio;
+    // Percorre a lista daquele vértice até o final contando todas as arestas
     while(p){
         soma++;
         p = p -> prox;
@@ -159,6 +160,10 @@ int main(){
     inserirAresta(g, 4, 5);
 
     printf("Grafo original:\n");
+    imprimirGrafo(g);
+
+    printf("\nInserindo aresta (4,2) \n");
+    inserirAresta(g, 4, 2);
     imprimirGrafo(g);
 
     printf("\nGrau de saída dos vértices:\n");
