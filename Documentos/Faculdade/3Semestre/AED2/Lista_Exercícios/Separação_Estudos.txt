@@ -1,0 +1,14 @@
+Quinta-feira:
+    - Escrever todos os códigos básicos de Grafo de lista ligada ---------------> FEITO
+    - Revisar a parte teórica de Busca por profundidade
+    - Revisar a parte teórica de Busca em Largura
+    - Teste algoritmo de busca por profundidade (Lista Ligada)
+    - Teste algoritmo de busca em largura (Lista Ligada)
+    - 1 Exercício da Lista
+
+Sexta-feira:
+    - Teste algoritmo de busca por profundidade (Matriz)
+    - Teste algoritmo de busca em largura (Matriz)
+    - Entender e corrigir exercícios de busca em Largura
+    - Esquematizar os exercícios de aula de busca em Largura
+    - Exercícios da Lista
