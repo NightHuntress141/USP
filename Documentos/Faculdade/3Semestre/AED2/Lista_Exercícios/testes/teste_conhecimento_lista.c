@@ -17,7 +17,7 @@
 
 typedef struct s{
     NO* inicio; //Ponteiro para o início da lista dos vértices adjacentes ao vértice que estamos analisando
-    // Adicionamos o Flag aqui
+    int Flag;
 }VERTICE;
 
 typedef struct r{
@@ -84,12 +84,55 @@ bool excluirAresta(VERTICE* g, int i, int j){
     return true;
 }
 
-int main(){
+void zerarFlags(VERTICE* g){
+    for(int i = 0; i <= V; i++){
+        g[i].Flag = 0;
+    }
+}
 
+void buscaProf(VERTICE* g, int i){
+    // Inicialização
+    g[i].Flag = 1;
+    NO* p = g[i].inicio;
+    while(p){
+        if(g[p -> adj].Flag == 0) buscaProf(g, p -> adj);
+        p = p -> prox;
+    }
+    g[i].Flag = 2;
+}
+
+void buscaLargura(VERTICE* g, int i){
+    // Inicialização
+    zerarFlags(g);
+    FILA f;
+    inicializarFila(&f);
+
+    // Entra na fila e marca como acabou de ser achado
+    entrarFila(&f, i);
+    g[i].Flag = 1;
+
+    while(f){ //Enquanto a fila não estiver vazia
+        i = sairFila(&f); // Retorna quem acabou de sair da fila
+        g[i].Flag = 2; // Marca como processado
+        NO* p = g[i].inicio;
+
+        while(p){
+            if(g[p -> adj].Flag == 0){
+                entrarFila(&f, p -> adj);
+                g[p -> adj].Flag = 1;
+            }
+            p = p -> prox;
+        }
+
+
+    }
+
+    
+}
+
+int main(){
     VERTICE g;
     inicializarGrafo(&g);
-
-
 }
 
 

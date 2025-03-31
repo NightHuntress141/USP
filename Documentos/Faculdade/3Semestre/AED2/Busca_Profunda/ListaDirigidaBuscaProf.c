@@ -72,7 +72,7 @@ void imprimirGrafo(vertice *g) {
     }
 }
 
-// Função de busca por profundidade que possui como entrada o grafo a ser analisado e o vértice i para ser encontrado
+// Função de busca por profundidade que possui como entrada o grafo a ser analisado e o vértice i que começa a busca
 void BuscaProf(vertice *g, int i){
     g[i].Flag = 1; // Acabou de ser descoberto
     NO* p = g[i].inicio;
