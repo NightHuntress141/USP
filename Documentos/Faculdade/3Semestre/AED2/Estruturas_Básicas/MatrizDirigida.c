@@ -1,3 +1,13 @@
+/*
+-> Códigos fundamentais para Grafos:
+    - Inicialização
+    - Verificar se aresta existe 
+    - Adicionar aresta
+    - Excluir aresta 
+    - Copiar Grafo
+    - Grau de Saída e Entrada
+    - Desalocar um Grafo
+*/
 
 #include <stdio.h>
 #include <stdbool.h>
@@ -7,14 +17,12 @@
 
 typedef struct{
     int matriz[V + 1][V + 1]; 
-    int flag[V + 1];
 } Grafo;
 
 void inicializar(Grafo* g){
     for(int i = 1; i <= V; i++){
         for(int j = 1; j <= V; j++){
             g -> matriz[i][j] = 0;
-            g -> flag[i] = 0;
         }
     }
 }
@@ -55,23 +63,6 @@ void imprimirGrafo(Grafo *g) {
         }
         printf("\n");
     }
-}
-
-void zerarFlags(Grafo *g){
-    for(int i = 1; i <= V; i++){
-        g -> flag[i] = 0;
-    }
-}
-
-void buscaProf(Grafo *g, int i){
-    zerarFlags(g);
-    g -> flag[i] = 1; // Descoberto
-    for(int j = 1; j <= V; j++){ // A partir de todos os vértices existentes
-        if(g -> matriz[i][j] == 1 && g -> flag[i] == 0){
-            buscaProf(g, j);
-        }
-    }
-    g -> flag[i] = 2;
 }
 
 int main(){

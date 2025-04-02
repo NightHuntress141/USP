@@ -244,8 +244,6 @@ int main(){
     removerLaços(g);
     printf("Grafo com laços removidos:\n");
     imprimirGrafo(g);    
-
-
  
 
     liberarGrafo(g);
