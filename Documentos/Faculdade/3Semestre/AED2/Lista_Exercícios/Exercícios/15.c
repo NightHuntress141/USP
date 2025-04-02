@@ -1,50 +1,48 @@
-/* 15. Seja um grafo g não-conexo e não-dirigido. Escreva uma função para contar a quantidade de 
-grupos disjuntos de vértices mutuamente alcançáveis em g. */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 
 #define V 5
 
-typedef struct r{
+typedef struct r {
     struct r *prox;
     int adj;
 } NO;
 
-typedef struct{
+typedef struct {
     NO* inicio;
     int flag;
 } vertice;
 
-void inicializar(vertice *g){
-    int i;
-    for(i = 1; i <= V; i++) g[i].inicio = NULL;
+void inicializar(vertice *g) {
+    for (int i = 1; i <= V; i++) {
+        g[i].inicio = NULL;
+        g[i].flag = 0;
+    }
 }
 
-NO* arestaExiste(vertice *g, int i, int j, NO** ant){
-    // Recebemos como argumento um ponteiro auxiliar que indicara o vértice anterior
+NO* arestaExiste(vertice *g, int i, int j, NO** ant) {
     *ant = NULL;
-    // Criamos um ponteiro p que vai iniciar do começo de cada lista (vertice)
     NO* p = g[i].inicio;
-    // Loop que percorre lista por lista em busca da aresta que aponta de um vértice para outro
-    while(p){
-        if(p -> adj == j) return p; // Achou o vértice
-        *ant = p; // Anterior recebe o valor do atual
-        p = p -> prox; // Atual recebe o valor do pŕoximo
+    while (p) {
+        if (p->adj == j) return p;
+        *ant = p;
+        p = p->prox;
     }
-    return NULL; //aresta não existe
+    return NULL;
 }
 
 bool inserirAresta(vertice *g, int i, int j) {
     if (!arestaExiste(g, i, j, NULL)) {
         NO* novo = (NO*)malloc(sizeof(NO));
+        if (!novo) return false;
         novo->adj = j;
         novo->prox = g[i].inicio;
         g[i].inicio = novo;
     }
     if (!arestaExiste(g, j, i, NULL)) {
         NO* novo = (NO*)malloc(sizeof(NO));
+        if (!novo) return false;
         novo->adj = i;
         novo->prox = g[j].inicio;
         g[j].inicio = novo;
@@ -53,22 +51,16 @@ bool inserirAresta(vertice *g, int i, int j) {
 }
 
 bool excluiAresta(vertice *g, int i, int j) {
-    // Criamos um ponteiro auxiliar que indicara o vértice anterior
     NO *ant;
-    // Recebemos o valor achado que indica o vértice i que aponta para j
     NO *atual = arestaExiste(g, i, j, &ant);
+    if (!atual) return false;
 
-    if (!atual) return false; //Não existe, não tem como excluir
-
-    // Se existe um anterior, então apenas aponte para o próximo
     if (ant) 
         ant->prox = atual->prox;
-    // Caso contrário, se o elemento está no início da lista
     else 
         g[i].inicio = atual->prox;
 
-    free(atual); // Libera espaço
-
+    free(atual);
     return true;
 }
 
@@ -93,38 +85,58 @@ void liberarGrafo(vertice *g) {
             free(temp);
         }
     }
-    free(g);
 }
 
-void zerarFlag(vertice* g){
-    for(int i = 1; i <= V; i++){
+void zerarFlag(vertice* g) {
+    for (int i = 1; i <= V; i++) {
         g[i].flag = 0;
     }
 }
 
-bool buscaProf(vertice *g, int i) {
-    g[i].flag = 1; // Vértice está sendo visitado
+void buscaProf(vertice *g, int i) {
+    g[i].flag = 1;
     NO* p = g[i].inicio;
     while (p) {
-        if (g[p->adj].flag == 1) return true; // Encontrou um ciclo
-        if (g[p->adj].flag == 0 && buscaProf(g, p->adj)) return true;
+        if (g[p->adj].flag == 0) 
+            buscaProf(g, p->adj);
         p = p->prox;
     }
-    g[i].flag = 2; // Vértice já foi completamente processado
-    return false;
+    g[i].flag = 2;
 }
 
-
+int contarGruposDisjuntos(vertice* g) {
+    zerarFlag(g);
+    int grupos = 0;
+    for (int i = 1; i <= V; i++) {
+        if (g[i].flag == 0) {
+            buscaProf(g, i);
+            grupos++;
+        }
+    }
+    return grupos;
+}
 
 int main() {
-    vertice *g = (vertice*) malloc((V + 1) * sizeof(vertice));
+    vertice *g = (vertice*)malloc((V + 1) * sizeof(vertice));
+    if (!g) {
+        printf("Falha na alocação de memória.\n");
+        return 1;
+    }
+
     inicializar(g);
 
     inserirAresta(g, 1, 2);
     inserirAresta(g, 1, 3);
-    inserirAresta(g, 2, 4);
-    inserirAresta(g, 3, 5);
-    
-    free(g);
+    inserirAresta(g, 2, 3);
+    inserirAresta(g, 4, 5);
+
+    printf("Grafo original:\n");
+    imprimirGrafo(g);
+
+    int grupos = contarGruposDisjuntos(g);
+    printf("\nQuantidade de grupos do grafo não dirigido desconexo: %d\n", grupos);
+
+    liberarGrafo(g);
+    free(g); // Liberar o grafo apenas uma vez, no final do programa.
     return 0;
 }
