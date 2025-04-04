@@ -107,6 +107,7 @@ void zerarFlag(vertice* g) {
 }
 
 // Resolução problema 12
+    // if(g[p -> adj]. Flag == 1)
 bool buscaProf(vertice* g, int i, int pai) {
     g[i].flag = 1;
     NO* p = g[i].inicio;

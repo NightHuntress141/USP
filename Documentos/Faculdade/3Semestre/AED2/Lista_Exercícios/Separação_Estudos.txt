@@ -1,13 +1,30 @@
-Sábado:
+
     - Escrever todos os códigos básicos de Grafo de lista ligada ---------------> FEITO
     - Revisar a parte teórica de Busca por profundidade ---------------> FEITO
     - Revisar a parte teórica de Busca em Largura ---------------> FEITO
     - Teste algoritmo de busca por profundidade (Lista Ligada) ---------------> FEITO
     - Teste algoritmo de busca em largura (Lista Ligada) ---------------> FEITO
-
-Domingo:
-    - Teste algoritmo de busca por profundidade (Matriz)
-    - Teste algoritmo de busca em largura (Matriz)
+    - Teste algoritmo de busca por profundidade (Matriz) ---------------> FEITO
+    - Teste algoritmo de busca em largura (Matriz) ---------------> FEITO
+    - Entender e corrigir exercícios de busca por profundidade
+    - Esquematizar os exercícios de aula de busca por profundidade
     - Entender e corrigir exercícios de busca em Largura
     - Esquematizar os exercícios de aula de busca em Largura
     - Exercícios da Lista
+
+    -> Rever exercícios com dúvidas:
+        - 12
+
+    Quinta-Feira: 16, 17, 18, 19
+    Sexta-Feira: 20, 21, 22, 23, 24
+    Sabádo: 25, 26, 27, 28, 29
+    Domingo: EP + PROVA
+    Segunda: Revisão + PROVA
+
+    PROFUNDIDADE:
+        -> Detectar Ciclos
+        -> Detectar componentes fortemente conexos
+        -> Ordenação Topológica
+    LARGURA:
+        -> Caminho mais curto
+        -> Mais próximo/distante
