@@ -1,6 +1,14 @@
 //--------------------------------------------------------------
-// COLOQUE OS NOMES DOS RESPONSÁVEIS AQUI: blablabla E blablabla
+// COLOQUE OS NOMES DOS RESPONSï¿½VEIS AQUI: Rebecka Bocci Domingues E blablabla
 //--------------------------------------------------------------
+
+/*
+-> Grafos nÃ£o-dirigidos
+
+
+*/
+
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -28,16 +36,15 @@ typedef struct estr {
 } NO;
 
 
-// funcao principal
-NO *equidistantes(int V, int A, int ij[], int *v1, int *v2);
+// grafo de V vÃ©rtices numeradas de 1 a V e A arestas. O vetor ij[] contÃ©m exatamente 2*A elementos, e cada par representa uma aresta i,j. 
+NO* equidistantes(int V, int A, int ij[], int v1, int v2);
 
 //------------------------------------------
 // O EP consiste em implementar esta funcao
 // e outras funcoes auxiliares que esta
 // necessitar
 //------------------------------------------
-NO *equidistantes(int V, int A, int ij[], int *v1, int *v2)
-{
+NO* equidistantes(int V, int A, int ij[], int v1, int v2){
 	NO* resp = NULL;
 
 	// seu codigo AQUI
@@ -54,7 +61,7 @@ NO *equidistantes(int V, int A, int ij[], int *v1, int *v2)
 int main() {
 
 
-	// aqui vc pode incluir codigo de teste - mas não precisa entregar isso
+	// aqui vc pode incluir codigo de teste - mas nï¿½o precisa entregar isso
 
 
 
@@ -65,4 +72,4 @@ int main() {
 
 }
 
-// por favor nao inclua nenhum código abaixo da função main()
+// por favor nao inclua nenhum cï¿½digo abaixo da funï¿½ï¿½o main()

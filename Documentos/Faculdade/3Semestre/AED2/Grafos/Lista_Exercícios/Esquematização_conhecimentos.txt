@@ -37,9 +37,7 @@
     - Achar um caminho entre i (origem) e j (destino):
         - Sem passar por vértices com dada característica em sua structure
         - Apenas passar por vértices com dada característica em sua structure
-    - Grafos Desconexos:
+    - Grafos Desconexos: ---> 15
         - Como achar todos os valores de vértices
         - Como achar a maior comunidade de vértices
-
--> Categória de Problemas que envolvem Busca por Largura:
-
+    - Como achar ciclos ---> 12

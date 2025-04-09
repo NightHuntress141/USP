@@ -121,7 +121,6 @@ int GrauEntrada(vertice *g, int i){
 // A função abaixo copia um grafo, retornando um ponteiro para a estrutura do tipo vértice
 vertice* copiaGrafo(vertice *g){
     vertice* h = (vertice*) malloc (sizeof(vertice) * (V + 1));
-    int j;
     for(int i = 1; i <= V; i++){
         NO* p = g[i].inicio;
         h[i].inicio = NULL;
